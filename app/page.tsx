@@ -98,20 +98,68 @@ const ValuesSection = () => {
         Nuestros valores
       </h2>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-        {values.map((value, index) => (
-          <motion.div
-            key={value.name}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className={`bg-${colors[index]} p-6 rounded-lg shadow-lg`}
-          >
-            <h3 className='text-xl font-bold mb-2 text-[#F0E3D2]'>
-              {value.name}
-            </h3>
-            <p className='text-[#F0E3D2] opacity-90'>{value.description}</p>
-          </motion.div>
-        ))}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0 }}
+          className='bg-primary p-6 rounded-lg shadow-lg'
+        >
+          <h3 className='text-xl font-bold mb-2 text-[#F0E3D2]'>Calidad</h3>
+          <p className='text-[#F0E3D2] opacity-90'>
+            La excelencia es nuestra norma. Cada detalle está pensado para
+            invitarte a disfrutar del aquí y ahora.
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className='bg-secondary p-6 rounded-lg shadow-lg'
+        >
+          <h3 className='text-xl font-bold mb-2 text-[#F0E3D2]'>
+            Comunidad y emprendedurismo
+          </h3>
+          <p className='text-[#F0E3D2] opacity-90'>
+            Apoyamos a los emprendedores y fomentamos el espíritu emprendedor
+            dentro de una comunidad vibrante y diversa.
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className='bg-tertiary p-6 rounded-lg shadow-lg'
+        >
+          <h3 className='text-xl font-bold mb-2 text-[#F0E3D2]'>Pasión</h3>
+          <p className='text-[#F0E3D2] opacity-90'>
+            Nos mueve una pasión inigualable por el café y las personas, creando
+            un espacio donde el tiempo parece detenerse.
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className='bg-quaternary p-6 rounded-lg shadow-lg'
+        >
+          <h3 className='text-xl font-bold mb-2 text-[#F0E3D2]'>Innovación</h3>
+          <p className='text-[#F0E3D2] opacity-90'>
+            Estamos siempre en la búsqueda de innovar, para ofrecerte no solo un
+            café, sino un momento de paz en tu día a día.
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className='bg-quinary p-6 rounded-lg shadow-lg'
+        >
+          <h3 className='text-xl font-bold mb-2 text-[#F0E3D2]'>Compromiso</h3>
+          <p className='text-[#F0E3D2] opacity-90'>
+            Nos comprometemos con brindar una experiencia humana y cálida,
+            creando un ambiente donde todos se sienten bienvenidos y valorados.
+          </p>
+        </motion.div>
       </div>
     </div>
   );
