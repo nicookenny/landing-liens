@@ -1,15 +1,160 @@
-import Link from "next/link";
+'use client';
 
-const Home = () => {
+import { AnimatePresence, motion } from 'framer-motion';
+import { DM_Sans } from 'next/font/google';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+
+const dmSans = DM_Sans({ subsets: ['latin'] });
+
+const calculateTimeLeft = () => {
+  const difference = +new Date('2025-07-12') - +new Date();
+  let timeLeft = { dias: 0, horas: 0, minutos: 0, segundos: 0 };
+
+  if (difference > 0) {
+    timeLeft = {
+      dias: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      horas: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutos: Math.floor((difference / 1000 / 60) % 60),
+      segundos: Math.floor((difference / 1000) % 60),
+    };
+  }
+
+  return timeLeft;
+};
+
+const AnimatedNumber = ({ value }: { value: number }) => (
+  <AnimatePresence mode='wait'>
+    <motion.span
+      key={value}
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: 20, opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className='inline-block font-bold text-6xl'
+    >
+      {value.toString().padStart(2, '0')}
+    </motion.span>
+  </AnimatePresence>
+);
+
+const CommitmentSection = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.5 }}
+    className='mt-12 mb-12 w-full max-w-3xl text-center'
+  >
+    <h2 className='text-3xl font-bold mb-4 text-[#F0E3D2]'>
+      Nuestro compromiso
+    </h2>
+    <p className='text-secondary text-lg'>
+      En Liens, nos comprometemos a ser el puente entre el arte del café y tu
+      búsqueda de tranquilidad. Cada taza que servimos es una invitación a
+      pausar, disfrutar y redescubrir la belleza de los pequeños momentos. Aquí,
+      la calidad se encuentra en cada sorbo y en cada rincón, creando un espacio
+      donde el tiempo se detiene, permitiéndote relajarte, soñar despierto y
+      reconectarte contigo mismo. Bienvenido a un lugar donde cada visita es más
+      que una experiencia; es un viaje hacia la calma y el disfrute de la vida,
+      taza a taza.
+    </p>
+  </motion.div>
+);
+
+const ValuesSection = () => {
+  const values = [
+    {
+      name: 'Calidad',
+      description:
+        'La excelencia es nuestra norma. Cada detalle está pensado para invitarte a disfrutar del aquí y ahora.',
+    },
+    {
+      name: 'Comunidad y emprendedurismo',
+      description:
+        'Apoyamos a los emprendedores y fomentamos el espíritu emprendedor dentro de una comunidad vibrante y diversa.',
+    },
+    {
+      name: 'Pasión',
+      description:
+        'Nos mueve una pasión inigualable por el café y las personas, creando un espacio donde el tiempo parece detenerse.',
+    },
+    {
+      name: 'Innovación',
+      description:
+        'Estamos siempre en la búsqueda de innovar, para ofrecerte no solo un café, sino un momento de paz en tu día a día.',
+    },
+    {
+      name: 'Compromiso',
+      description:
+        'Nos comprometemos con brindar una experiencia humana y cálida, creando un ambiente donde todos se sienten bienvenidos y valorados.',
+    },
+  ];
+
+  const colors = ['primary', 'secondary', 'tertiary', 'quaternary', 'quinary'];
+
   return (
-    <div>
-      <h1>Home</h1>
-      <p>Hello World! This is the Home page</p>
-      <p>
-        Visit the <Link href="/about">About</Link> page.
-      </p>
+    <div className='mt-12 w-full max-w-4xl'>
+      <h2 className='text-3xl font-bold mb-8 text-center text-[#F0E3D2]'>
+        Nuestros valores
+      </h2>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+        {values.map((value, index) => (
+          <motion.div
+            key={value.name}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className={`bg-${colors[index]} p-6 rounded-lg shadow-lg`}
+          >
+            <h3 className='text-xl font-bold mb-2 text-[#F0E3D2]'>
+              {value.name}
+            </h3>
+            <p className='text-[#F0E3D2] opacity-90'>{value.description}</p>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default Home;
+export default function LogoCountdown() {
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div
+      className={`flex flex-col items-center justify-center min-h-screen bg-[#0f0f0f] p-4 ${dmSans.className}`}
+    >
+      <div className='mb-8 w-full max-w-xs'>
+        <Image
+          src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-blanco%20(4)-KfYcVksMoIxDcFbHBzQRRvjCgcVN2s.svg'
+          alt='Logo'
+          width={696}
+          height={263}
+          layout='responsive'
+        />
+      </div>
+      <div className='text-[#F0E3D2] text-center'>
+        <div className='grid grid-cols-4 gap-4'>
+          {Object.entries(timeLeft).map(([unit, value]) => (
+            <div key={unit} className='flex flex-col items-center'>
+              <div className='mb-2'>
+                <AnimatedNumber value={value} />
+              </div>
+              <div className='text-xl font-bold'>{unit}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <CommitmentSection />
+      <ValuesSection />
+    </div>
+  );
+}
