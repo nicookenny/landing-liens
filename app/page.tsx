@@ -62,36 +62,6 @@ const CommitmentSection = () => (
 );
 
 const ValuesSection = () => {
-  const values = [
-    {
-      name: 'Calidad',
-      description:
-        'La excelencia es nuestra norma. Cada detalle está pensado para invitarte a disfrutar del aquí y ahora.',
-    },
-    {
-      name: 'Comunidad y emprendedurismo',
-      description:
-        'Apoyamos a los emprendedores y fomentamos el espíritu emprendedor dentro de una comunidad vibrante y diversa.',
-    },
-    {
-      name: 'Pasión',
-      description:
-        'Nos mueve una pasión inigualable por el café y las personas, creando un espacio donde el tiempo parece detenerse.',
-    },
-    {
-      name: 'Innovación',
-      description:
-        'Estamos siempre en la búsqueda de innovar, para ofrecerte no solo un café, sino un momento de paz en tu día a día.',
-    },
-    {
-      name: 'Compromiso',
-      description:
-        'Nos comprometemos con brindar una experiencia humana y cálida, creando un ambiente donde todos se sienten bienvenidos y valorados.',
-    },
-  ];
-
-  const colors = ['primary', 'secondary', 'tertiary', 'quaternary', 'quinary'];
-
   return (
     <div className='mt-12 w-full max-w-4xl'>
       <h2 className='text-3xl font-bold mb-8 text-center text-[#F0E3D2]'>
@@ -178,25 +148,32 @@ export default function LogoCountdown() {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center min-h-screen bg-[#0f0f0f] p-4 ${dmSans.className}`}
+      className={`flex flex-col items-center justify-center min-h-screen bg-[#0f0f0f] p-16 ${dmSans.className}`}
     >
       <div className='mb-8 w-full max-w-xs'>
-        <Image
-          src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-blanco%20(4)-KfYcVksMoIxDcFbHBzQRRvjCgcVN2s.svg'
-          alt='Logo'
-          width={696}
-          height={263}
-          layout='responsive'
-        />
+        <div className='w-3/4 mx-auto'>
+          <Image
+            src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-blanco%20(4)-KfYcVksMoIxDcFbHBzQRRvjCgcVN2s.svg'
+            alt='Logo'
+            width={696}
+            height={263}
+            layout='responsive'
+          />
+        </div>
       </div>
       <div className='text-[#F0E3D2] text-center'>
-        <div className='grid grid-cols-4 gap-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-4 gap-4'>
           {Object.entries(timeLeft).map(([unit, value]) => (
-            <div key={unit} className='flex flex-col items-center'>
-              <div className='mb-2'>
+            <div
+              key={unit}
+              className='flex flex-row sm:flex-col items-center justify-between sm:justify-center'
+            >
+              <div className='mb-2 order-2 sm:order-1'>
                 <AnimatedNumber value={value} />
               </div>
-              <div className='text-xl font-bold'>{unit}</div>
+              <div className='text-xl font-bold mr-4 sm:mr-0 order-1 sm:order-2'>
+                {unit}
+              </div>
             </div>
           ))}
         </div>
