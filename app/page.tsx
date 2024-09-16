@@ -148,7 +148,7 @@ export default function LogoCountdown() {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center min-h-screen bg-[#0f0f0f] p-16 ${dmSans.className}`}
+      className={`flex flex-col items-center justify-center min-h-screen bg-[#0f0f0f] p-4 md:p-16 ${dmSans.className}`}
     >
       <div className='mb-8 w-full max-w-xs'>
         <div className='w-3/4 mx-auto'>

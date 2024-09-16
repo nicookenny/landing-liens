@@ -1,24 +1,4 @@
-import { Metadata } from 'next';
 import './globals.css';
-
-export const metadata: Metadata = {
-  title: 'Liens - café de especialidad',
-  description: 'Un punto en el espacio donde ser vos mismo.',
-  icons: {
-    icon: [
-      {
-        media: '(prefers-color-scheme: light)',
-        url: '/logo-white.png',
-        href: '/logo-white.png',
-      },
-      {
-        media: '(prefers-color-scheme: dark)',
-        url: '/logo-black.png',
-        href: '/logo-black.png',
-      },
-    ],
-  },
-};
 
 export default function RootLayout({
   children,
@@ -27,6 +7,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang='es'>
+      <head>
+        <title>Liens - café de especialidad</title>
+        <meta
+          name='description'
+          content='Un punto en el espacio donde ser vos mismo.'
+        />
+        <link rel='icon' href='/logo.png' />
+      </head>
       <body>{children}</body>
     </html>
   );
